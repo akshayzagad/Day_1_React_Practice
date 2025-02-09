@@ -55,15 +55,13 @@ function App() {
     </div>;
 } 
 
-function Pizza(props) {
-    console.log(props);
-    
+function Pizza(props) {    
     return <div className='pizza'>
-        <img src={props.pizza.photoName} alt={props.pizza.name}></img>
+        <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}></img>
         <div>
-        <h2>{props.pizza.name}</h2>
-         <p>{props.pizza.ingredients}</p>
-         <span>{props.pizza.price + 3} €</span>
+        <h2>{props.pizzaObj.name}</h2>
+         <p>{props.pizzaObj.ingredients}</p>
+         <span>{props.pizzaObj.price + 3} €</span>
          </div>
          </div>;
 }
@@ -111,12 +109,6 @@ function Footer() {
     let currentHour = new Date().getHours();
     let openStatus = currentHour < openHour || currentHour >= closeHour ? "closed" : "open";
 
-    // if (currentHour < openHour || currentHour >= closeHour) {
-    //     alert("We are currently closed. Please come back tomorrow.");
-    // }else{
-    //     alert("We are currently open. Please come in.");
-    // }
-    
     return (
         <footer className='footer'>
             <p>{new Date().toLocaleDateString()} We are currently {openStatus}</p>

@@ -59,12 +59,12 @@ function App() {
 
 function Pizza({pizzaObj}) {
   return (
-    <li className="pizza">
+    <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
       <img src={pizzaObj.photoName} alt={pizzaObj.name}></img>
       <div>
         <h2>{pizzaObj.name}</h2>
         <p>{pizzaObj.ingredients}</p>
-        <span>{pizzaObj.price + 3} €</span>
+          <span>{pizzaObj.soldOut ? "Sold Out" : pizzaObj.price} €</span>
       </div>
     </li>
   );
@@ -77,13 +77,19 @@ function Menu() {
     <main className="menu">
       <h2>Our Menu</h2>
       {numberOfPizzas > 0 ? (
+        <>
+        <p> Authentic Italian cuisine. 6 creative dishes to choose from. All
+            from our stone oven, all organic, all delicious.</p>
         <ul className="pizzas">
           {/* {pizzaData.map((pizza)=><Pizza name={pizza.name} photoName={pizza.photoName} ingredients={pizza.ingredients} price={pizza.price} soldOut={pizza.soldOut} />)} */}
           {pizzas.map((pizza) => (
             <Pizza pizzaObj={pizza} key={pizza.name} />
           ))}
         </ul>
-      ): <p>We are currently working on menu plese come back another time</p>}
+         </>
+      )
+      : <p>We are currently working on menu plese come back another time</p>
+     }
 
       {/* <Pizza 
             name={pizzaData[1].name}
@@ -142,8 +148,7 @@ function Footer() {
 function Order({closeHour, openHour}) {
   return (
     <p>
-      Order your pizza now and enjoy it at home or in our restaurant until {openHour}:00 and 
-       {closeHour}:00.
+      Order your pizza now and enjoy it at home or in our restaurant until {openHour}:00 and  {closeHour}:00.
     </p>
   );
 }
